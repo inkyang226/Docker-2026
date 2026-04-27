@@ -1,0 +1,20 @@
+# Railway 部署配置文件
+# 文档: https://docs.railway.app/guides/services
+
+[build]
+# 使用 Dockerfile 构建镜像
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# 启动命令（会覆盖 Dockerfile 中的 CMD）
+# 这里使用 node index.js 启动守护脚本
+startCommand = "node index.js"
+# 健康检查路径
+healthcheckPath = "/"
+# 健康检查超时时间（秒）
+healthcheckTimeout = 300
+# 重启策略：始终重启
+restartPolicyType = "ON_FAILURE"
+# 重启最大重试次数
+restartPolicyMaxRetries = 10

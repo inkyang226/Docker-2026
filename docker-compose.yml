@@ -1,0 +1,31 @@
+# Docker Compose 配置文件
+# 用于本地测试 Docker 镜像是否正常工作
+
+version: '3.8'
+
+services:
+  miner:
+    # 构建配置
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # 容器名称
+    container_name: node-app
+    # 重启策略：始终重启
+    restart: always
+    # 端口映射
+    ports:
+      - "3000:3000"
+    # 环境变量
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'      # 限制最多使用 0.5 个 CPU 核心
+          memory: 512M     # 限制最多使用 512MB 内存
+        reservations:
+          cpus: '0.25'     # 预留 0.25 个 CPU 核心
+          memory: 256M     # 预留 256MB 内存
