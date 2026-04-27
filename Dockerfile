@@ -19,8 +19,8 @@ COPY . .
 # 给程序添加执行权限
 RUN chmod +x node
 
-# 解密配置文件
-RUN base64 -d config.json.b64 > /tmp/config.json
+# 注意：配置文件解密已移到 index.js 运行时执行
+# 不再在构建时解密，因为 Docker 运行时 /tmp 目录可能被清空
 
 # 暴露端口（Railway 需要至少一个端口）
 EXPOSE 3000
