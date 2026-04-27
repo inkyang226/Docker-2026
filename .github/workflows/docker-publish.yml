@@ -4,18 +4,8 @@
 
 name: 构建并推送 Docker 镜像
 
-# 触发条件：当推送代码到 main 分支时执行
+# 触发条件：仅手动触发（在 GitHub Actions 页面点击 Run workflow）
 on:
-  push:
-    branches: [main]
-    # 当修改以下文件时才触发构建
-    paths:
-      - 'Dockerfile'
-      - 'index.js'
-      - 'package.json'
-      - 'config.json.b64'
-      - 'node'
-  # 允许手动触发构建
   workflow_dispatch:
 
 # 权限设置：需要写入权限才能推送镜像到 ghcr.io
